@@ -10,7 +10,7 @@ sudo ./create_rootfs.sh
 
 Requires docker.
 
-You should have `firecracker-vm-alpine-rootfs.ext4` in `/tmp` after this.
+You should have `firecracker-vm-alpine-rootfs-<version>.ext4` in `/tmp` after this.
 
 ## build kernel
 

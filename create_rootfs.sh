@@ -10,12 +10,14 @@ umount /tmp/firecracker-vm-alpine-rootfs 2>/dev/null || true
 if [ -e /tmp/firecracker-vm-alpine-rootfs ]; then
     rmdir /tmp/firecracker-vm-alpine-rootfs
 fi
-rm -f /tmp/firecracker-vm-alpine-rootfs.ext4
+
+output_file=/tmp/firecracker-vm-alpine-rootfs-$alpine_version.ext4
+rm -f $output_file
 install -m 700 -d /tmp/firecracker-vm-alpine-rootfs
-install -m 600 /dev/null /tmp/firecracker-vm-alpine-rootfs.ext4
-truncate --size 128M /tmp/firecracker-vm-alpine-rootfs.ext4
-mkfs.ext4 -F /tmp/firecracker-vm-alpine-rootfs.ext4
-mount /tmp/firecracker-vm-alpine-rootfs.ext4 /tmp/firecracker-vm-alpine-rootfs
+install -m 600 /dev/null $output_file
+truncate --size 128M $output_file
+mkfs.ext4 -F $output_file
+mount $output_file /tmp/firecracker-vm-alpine-rootfs
 docker run -i --rm -v /tmp/firecracker-vm-alpine-rootfs:/rootfs "alpine:$alpine_version" <<'EOF'
 set -euxo pipefail
 
@@ -47,4 +49,4 @@ done
 EOF
 umount /tmp/firecracker-vm-alpine-rootfs
 rmdir /tmp/firecracker-vm-alpine-rootfs
-# dumpe2fs /tmp/firecracker-vm-alpine-rootfs.ext4
+# dumpe2fs $output_file
