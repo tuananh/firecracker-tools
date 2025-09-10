@@ -34,3 +34,22 @@ go build
   --kernel=hello-vmlinux.bin \
   --root-drive=hello-rootfs.ext4
 ```
+
+You should see sth like this. The version of Alpine should match if you build the rootfs yourself like above.
+
+```
+Welcome to Alpine Linux 3.22
+Kernel 4.14.55-84.37.amzn2.x86_64 on x86_64 (/dev/ttyS0)
+
+(none) login: root
+Password:
+Welcome to Alpine!
+
+The Alpine Wiki contains a large amount of how-to guides and general
+information about administrating Alpine systems.
+See <https://wiki.alpinelinux.org/>.
+
+You can setup the system with the command: setup-alpine
+
+You may change this message by editing /etc/motd.
+```
